@@ -32,7 +32,7 @@ class TaskController extends Controller
         $task->delete();
 
         return view("all",[
-            "tasks" => Task::all()
+            "tasks" => Task::latest()->paginate(10)
         ]);
     }
 
