@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function index() {
         return view("all",[
-            "tasks" => Task::latest()->paginate(10)
+            "tasks" => Task::latest()->paginate(2)
         ]);
     }
 
@@ -32,7 +32,7 @@ class TaskController extends Controller
         $task->delete();
 
         return view("all",[
-            "tasks" => Task::latest()->paginate(10)
+            "tasks" => Task::latest()->paginate(2)
         ]);
     }
 
@@ -49,5 +49,15 @@ class TaskController extends Controller
         $task->save();
 
         return redirect()->back();
+    }
+
+    public function createTaskView() {
+        return view("add");
+    }
+
+    public function editTaskView(Task $task) {
+        return view("edit",[
+            "task" => $task
+        ]);
     }
 }

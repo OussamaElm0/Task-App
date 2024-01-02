@@ -20,11 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("/tasks",[TaskController::class, "index"])->name("tasks.index");
-Route::get("/tasks/add",[HomeController::class,"addTask"])->name("tasks.add");
-Route::get("/tasks/{task}", [TaskController::class, "findTask"])->name(('tasks.find'));
-Route::get("/tasks/{task}/edit",[HomeController::class,"editTask"])->name("task.edit");
-Route::post("/tasks/add",[TaskController::class,"add"])->name("tasks.add");
-Route::put("/tasks/{task}",[TaskController::class,"edit"])->name("tasks.edit");
-Route::put("/tasks/{task}/toggling-status", [TaskController::class, "toggleStatus"])->name("tasks.status");
-Route::delete("/tasks/{task}",[TaskController::class, "deleteTask"])->name("tasks.delete");
+
+Route::controller(TaskController::class)->group(function() {
+    Route::get("/tasks","index")->name("tasks.index");
+    Route::get("/tasks/add","createTaskView")->name("tasks.add");
+    Route::get("/tasks/{task}", "findTask")->name(('tasks.find'));
+    Route::get("/tasks/{task}/edit","editTaskView")->name("task.edit");
+    Route::post("/tasks/add","add")->name("tasks.add");
+    Route::put("/tasks/{task}","edit")->name("tasks.edit");
+    Route::put("/tasks/{task}/toggling-status","toggleStatus")->name("tasks.status");
+    Route::delete("/tasks/{task}","deleteTask")->name("tasks.delete");
+});
