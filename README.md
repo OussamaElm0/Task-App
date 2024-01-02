@@ -7,7 +7,7 @@ This is a simple task management application built with Laravel.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/TaskApp.git
+   git clone https://github.com/OussamaElm0/TaskApp.git
    ```
 
 2. Install the dependencies:
